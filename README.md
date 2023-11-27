@@ -6,7 +6,7 @@ npm install
 npm run generate
 
 # Start Hono server
-bun run start
+npm run start
 ```
 
 ```bash
