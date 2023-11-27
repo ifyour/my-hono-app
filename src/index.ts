@@ -1,17 +1,17 @@
 import { Hono } from 'hono'
 import { serve } from '@hono/node-server'
-import { prisma } from "./database"
+import { prisma as db } from './database'
 
 const app = new Hono()
 
 app.get('/', (c) => c.json({ hello: 'hono!' }))
 
 app.get('/posts', async (c) => {
-  const posts = await prisma.post.findMany();
+  const posts = await db.post.findMany()
   return c.json({
     code: 200,
     message: 'success',
-    data: posts,
+    data: posts
   });
 })
 
