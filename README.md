@@ -5,7 +5,7 @@ npm install
 # Generate prisma client
 npm run generate
 
-# Start Hono server
+# Start the hono service in nodejs environment
 npm run start
 ```
 
