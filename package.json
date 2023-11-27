@@ -1,0 +1,19 @@
+{
+  "name": "my-hono-app",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsx watch src/index.ts",
+    "generate": "npx prisma generate --schema=./src/database/schema.prisma",
+    "seed": "tsx ./src/database/seed.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.2.3",
+    "hono": "^3.10.2",
+    "@libsql/client": "^0.4.0-pre.2",
+    "@prisma/adapter-libsql": "^5.6.0",
+    "@prisma/client": "^5.6.0"
+  },
+  "devDependencies": {
+    "tsx": "^3.12.2"
+  }
+}
