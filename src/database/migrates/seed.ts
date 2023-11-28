@@ -1,4 +1,4 @@
-import { prisma } from "../index";
+import { prisma } from '../index'
 
 // A `main` function so that we can use async/await
 async function main() {
@@ -14,13 +14,13 @@ async function main() {
         create: {
           title: 'Watch the talks from Prisma Day 2019',
           content: 'https://www.prisma.io/blog/z11sg6ipb3i1/',
-          published: true,
-        },
-      },
+          published: true
+        }
+      }
     },
     include: {
-      posts: true,
-    },
+      posts: true
+    }
   })
   const user2 = await prisma.user.create({
     data: {
@@ -31,27 +31,27 @@ async function main() {
           {
             title: 'Subscribe to GraphQL Weekly for community news',
             content: 'https://graphqlweekly.com/',
-            published: true,
+            published: true
           },
           {
             title: 'Follow Prisma on Twitter',
             content: 'https://twitter.com/prisma/',
-            published: false,
-          },
-        ],
-      },
+            published: false
+          }
+        ]
+      }
     },
     include: {
-      posts: true,
-    },
+      posts: true
+    }
   })
   console.log(
-    `Created users: ${user1.name} (${user1.posts.length} post) and ${user2.name} (${user2.posts.length} posts) `,
+    `Created users: ${user1.name} (${user1.posts.length} post) and ${user2.name} (${user2.posts.length} posts) `
   )
 
   // Retrieve all published posts
   const allPosts = await prisma.post.findMany({
-    where: { published: true },
+    where: { published: true }
   })
   console.log(`Retrieved all published posts: ${JSON.stringify(allPosts)}`)
 
@@ -63,33 +63,37 @@ async function main() {
       published: false,
       author: {
         connect: {
-          email: user1Email,
-        },
-      },
-    },
+          email: user1Email
+        }
+      }
+    }
   })
   console.log(`Created a new post: ${JSON.stringify(newPost)}`)
 
   // Publish the new post
   const updatedPost = await prisma.post.update({
     where: {
-      id: newPost.id,
+      id: newPost.id
     },
     data: {
-      published: true,
-    },
+      published: true
+    }
   })
-  console.log(`Published the newly created post: ${JSON.stringify(updatedPost)}`)
+  console.log(
+    `Published the newly created post: ${JSON.stringify(updatedPost)}`
+  )
 
   // Retrieve all posts by user with email alice@prisma.io
   const postsByUser = await prisma.user
     .findUnique({
       where: {
-        email: user1Email,
-      },
+        email: user1Email
+      }
     })
     .posts()
-  console.log(`Retrieved all posts from a specific user: ${JSON.stringify(postsByUser)}`)
+  console.log(
+    `Retrieved all posts from a specific user: ${JSON.stringify(postsByUser)}`
+  )
 }
 
 main()

@@ -75,23 +75,23 @@ Update your Prisma Client instance with the following snippet:
 ```ts
 // script.ts
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client'
 
 // 1. Import libSQL and the Prisma libSQL driver adapter
-import { PrismaLibSQL } from "@prisma/adapter-libsql";
-import { createClient } from "@libsql/client";
+import { PrismaLibSQL } from '@prisma/adapter-libsql'
+import { createClient } from '@libsql/client'
 
 // 2. Instantiate libSQL
 const libsql = createClient({
   // @ts-expect-error
   url: process.env.TURSO_DATABASE_URL,
-  authToken: process.env.TURSO_AUTH_TOKEN,
-});
+  authToken: process.env.TURSO_AUTH_TOKEN
+})
 
 // 3. Instantiate the libSQL driver adapter
-const adapter = new PrismaLibSQL(libsql);
+const adapter = new PrismaLibSQL(libsql)
 // Pass the adapter option to the Prisma Client instance
-const prisma = new PrismaClient({ adapter });
+const prisma = new PrismaClient({ adapter })
 
 // rest code...
 ```
