@@ -19,12 +19,9 @@ app.route('/auth', auth)
 /** global error handling */
 app.onError((error: CustomError, c) => {
   if (error.status === 401) {
-    return c.json({ code: 401, message: 'Unauthorized', data: null }, 401)
+    return c.json({ code: 401, message: 'Unauthorized' }, 401)
   }
-  return c.json(
-    { code: 500, message: 'Internal Server Error', data: null },
-    500
-  )
+  return c.json({ code: 500, message: 'Internal Server Error' }, 500)
 })
 
 serve({ fetch: app.fetch, port: 3000 }, () => {
