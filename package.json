@@ -3,8 +3,8 @@
   "license": "MIT",
   "scripts": {
     "start": "tsx watch src/index.ts",
-    "generate": "npx prisma generate --schema=./src/database/schema.prisma",
-    "seed": "tsx ./src/database/seed.ts"
+    "generate": "npx prisma generate --schema=src/database/schema.prisma",
+    "seed": "tsx src/database/seed.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.2.3",
