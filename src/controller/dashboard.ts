@@ -4,7 +4,7 @@ const dashboard = new Hono()
 
 dashboard.get('/user', async (c) => {
   return c.json({
-    code: 200,
+    success: true,
     message: 'success',
     data: [
       {

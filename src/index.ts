@@ -23,9 +23,9 @@ app.route('/dashboard', dashboard)
 /** global error handling */
 app.onError((error: CustomError, c) => {
   if (error.status === 401) {
-    return c.json({ code: 401, message: 'Unauthorized' }, 401)
+    return c.json({ success: false, message: 'Unauthorized' })
   }
-  return c.json({ code: 500, message: 'Internal Server Error' }, 500)
+  return c.json({ success: false, message: 'Internal Server Error' })
 })
 
 serve({ fetch: app.fetch, port: 3000 }, () => {

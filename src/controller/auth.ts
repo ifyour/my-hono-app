@@ -28,7 +28,7 @@ auth.post('/login', async (c) => {
     maxAge: expiresTime,
     sameSite: 'Strict'
   })
-  return c.json({ code: 200, message: 'Token signed and set in cookie.' })
+  return c.json({ success: true, message: 'Token signed and set in cookie.' })
 })
 
 export { auth }
