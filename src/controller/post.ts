@@ -20,17 +20,18 @@ post.get('/:id', async (c) => {
   if (post) {
     return c.json({ code: 200, message: 'success', data: post })
   }
-  return c.json({ code: 404, message: 'Not Found', data: null }, 404)
+  return c.json({ code: 404, message: 'Not Found' }, 404)
 })
 
 post.delete('/:id', async (c) => {
   const id = c.req.param('id')
-  try {
-    const post = await db.post.delete({ where: { id: Number(id) } })
-    return c.json({ code: 200, message: 'success', data: post })
-  } catch (error: any) {
-    return c.json({ code: 200, message: error.meta?.cause })
+  const post = await db.post
+    .delete({ where: { id: Number(id) } })
+    .catch(() => false)
+  if (!post) {
+    return c.json({ code: 404, message: 'Not Found' }, 404)
   }
+  return c.json({ code: 200, message: 'success', data: post })
 })
 
 export { post }
