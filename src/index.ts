@@ -3,18 +3,22 @@ import { Hono } from 'hono'
 import { jwt } from 'hono/jwt'
 import { serve } from '@hono/node-server'
 
-import { SECRET_TOKEN } from './config/env'
-import { post, auth } from './controller'
+import { SECRET_TOKEN, JWT_TOKEN_COOKIE_NAME } from './config/env'
+import { post, auth, dashboard } from './controller'
 
 const app = new Hono()
 
 /** middleware */
-app.use('/auth/*', jwt({ secret: SECRET_TOKEN, cookie: 'jwt-token' }))
+app.use(
+  '/dashboard/*',
+  jwt({ secret: SECRET_TOKEN, cookie: JWT_TOKEN_COOKIE_NAME })
+)
 
 /** router */
 app.get('/', (c) => c.json({ hello: 'hono!' }))
 app.route('/post', post)
 app.route('/auth', auth)
+app.route('/dashboard', dashboard)
 
 /** global error handling */
 app.onError((error: CustomError, c) => {

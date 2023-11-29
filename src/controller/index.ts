@@ -1,4 +1,5 @@
 import { auth } from './auth'
 import { post } from './post'
+import { dashboard } from './dashboard'
 
-export { auth, post }
+export { auth, post, dashboard }
