@@ -3,9 +3,9 @@ import { z } from 'zod'
 import { zValidator } from '@hono/zod-validator'
 import { prisma as db } from '@/database'
 
-const post = new Hono()
+const posts = new Hono()
 
-post.post(
+posts.post(
   '/',
   zValidator(
     'json',
@@ -26,12 +26,12 @@ post.post(
   }
 )
 
-post.get('/', async (c) => {
+posts.get('/', async (c) => {
   const posts = await db.post.findMany()
   return c.json({ success: true, message: 'success', data: posts })
 })
 
-post.get('/:id', async (c) => {
+posts.get('/:id', async (c) => {
   const id = c.req.param('id')
   const post = await db.post.findFirst({ where: { id: Number(id) } })
   if (post) {
@@ -40,7 +40,7 @@ post.get('/:id', async (c) => {
   return c.json({ success: false, message: 'Not Found' })
 })
 
-post.delete('/:id', async (c) => {
+posts.delete('/:id', async (c) => {
   const id = c.req.param('id')
   const post = await db.post
     .delete({ where: { id: Number(id) } })
@@ -51,4 +51,4 @@ post.delete('/:id', async (c) => {
   return c.json({ success: true, message: 'success', data: post })
 })
 
-export { post }
+export { posts }

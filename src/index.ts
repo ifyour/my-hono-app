@@ -4,7 +4,7 @@ import { jwt } from 'hono/jwt'
 import { serve } from '@hono/node-server'
 
 import { SECRET_TOKEN, JWT_TOKEN_COOKIE_NAME } from './config/env'
-import { post, auth, dashboard } from './controller'
+import { posts, auth, dashboard } from './controller'
 
 const app = new Hono()
 
@@ -16,7 +16,7 @@ app.use(
 
 /** router */
 app.get('/', (c) => c.json({ hello: 'hono!' }))
-app.route('/post', post)
+app.route('/posts', posts)
 app.route('/auth', auth)
 app.route('/dashboard', dashboard)
 
