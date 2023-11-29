@@ -21,11 +21,12 @@ app.route('/auth', auth)
 app.route('/dashboard', dashboard)
 
 /** global error handling */
+app.notFound((c) => c.json({ success: false, message: 'Not Found' }, 404))
 app.onError((error: CustomError, c) => {
   if (error.status === 401) {
-    return c.json({ success: false, message: 'Unauthorized' })
+    return c.json({ success: false, message: 'Unauthorized' }, 401)
   }
-  return c.json({ success: false, message: 'Internal Server Error' })
+  return c.json({ success: false, message: 'Internal Server Error' }, 500)
 })
 
 serve({ fetch: app.fetch, port: 3000 }, () => {
