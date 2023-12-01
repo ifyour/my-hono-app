@@ -1,2 +1,8 @@
 node_modules
 .env
+
+# Temporary DB Files
+local.db
+*.db-shm
+*.db-wal
+client_wal_index

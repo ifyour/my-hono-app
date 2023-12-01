@@ -4,9 +4,16 @@ import { createClient } from '@libsql/client'
 import { TURSO_AUTH_TOKEN, TURSO_DATABASE_URL } from '@/config/env'
 
 const libsql = createClient({
-  url: TURSO_DATABASE_URL,
+  url: 'file:./src/database/local.db',
+  syncUrl: TURSO_DATABASE_URL,
   authToken: TURSO_AUTH_TOKEN
 })
+
+function syncDatabase() {
+  libsql.sync()
+}
+setInterval(syncDatabase, 1000 * 30)
+
 const adapter = new PrismaLibSQL(libsql)
 const prisma = new PrismaClient({ adapter })
 

@@ -23,6 +23,7 @@ app.route('/dashboard', dashboard)
 /** global error handling */
 app.notFound((c) => c.json({ success: false, message: 'Not Found' }, 404))
 app.onError((error: CustomError, c) => {
+  console.log('>> App Error', JSON.stringify(error))
   if (error.status === 401) {
     return c.json({ success: false, message: 'Unauthorized' }, 401)
   }
