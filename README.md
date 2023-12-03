@@ -1,5 +1,3 @@
-Sure, here's the English version of the provided markdown:
-
 ### Setting up the Database
 
 1. [Install Turso CLI](https://docs.turso.tech/reference/turso-cli#installation)
