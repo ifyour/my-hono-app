@@ -43,4 +43,8 @@ bun run dev
 
 # Generate initialization data (first time)
 bun src/database/init_data.ts
+
+# Change schema filed, repeat this step for each change
+bunx prisma migrate dev --name "add_test_filed" --schema src/database/schema.prisma
+turso db shell turso-prisma < src/database/prisma/migrations/20231203115731_add_test_file/migration.sql
 ```
