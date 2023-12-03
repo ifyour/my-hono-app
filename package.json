@@ -2,10 +2,8 @@
   "name": "my-hono-app",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev tsx watch src/index.ts",
     "start": "cross-env NODE_ENV=prod tsx watch src/index.ts",
-    "generate": "npx prisma generate --schema=src/database/schema.prisma",
-    "seed": "tsx src/database/seed.ts"
+    "dev": "cross-env NODE_ENV=dev tsx watch src/index.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.2.3",

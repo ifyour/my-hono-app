@@ -10,6 +10,7 @@ const libsql = createClient({
 })
 
 function syncDatabase() {
+  console.log('>> syncing database')
   libsql.sync()
 }
 setInterval(syncDatabase, 1000 * 30)

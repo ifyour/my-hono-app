@@ -1,4 +1,4 @@
-import { prisma } from '../index'
+import { prisma } from './index'
 
 // A `main` function so that we can use async/await
 async function main() {

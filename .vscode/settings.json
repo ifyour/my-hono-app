@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["libsql", "TURSO"],
+  "cSpell.words": ["bunx", "libsql", "TURSO"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true
 }

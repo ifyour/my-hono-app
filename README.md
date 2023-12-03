@@ -1,4 +1,4 @@
-### Setting up the Database
+### Setting up the database
 
 1. [Install Turso CLI](https://docs.turso.tech/reference/turso-cli#installation)
 
@@ -25,25 +25,22 @@ TURSO_AUTH_TOKEN=<YOUR_TOKEN>
 4. Generate the database `schema` file
 
 ```bash
-npm run generate
+bunx prisma generate --schema src/database/schema.prisma
 ```
 
 5. Initialize database migration based on the `schema`
 
 ```bash
-# Documentation: https://www.prisma.io/docs/reference/api-reference/command-reference#migrate-diff
-npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > baseline.sql
-
-# Apply initial migration to the database
-turso db shell turso-prisma < baseline.sql
+bunx prisma migrate dev --name init --schema src/database/schema.prisma
+turso db shell turso-prisma < src/database/prisma/migrations/20231203094348_init/migration.sql
 ```
 
 ### Development
 
 ```bash
-# Generate Prisma client (only needs to be generated once)
-npx prisma generate
+# dev
+bun run dev
 
-# Start locally
-npm run dev
+# Generate initialization data (first time)
+bun src/database/init_data.ts
 ```
