@@ -10,10 +10,9 @@ const libsql = createClient({
 })
 
 function syncDatabase() {
-  console.log('>> syncing database')
   libsql.sync()
 }
-setInterval(syncDatabase, 1000 * 30)
+setInterval(syncDatabase, 1500)
 
 const adapter = new PrismaLibSQL(libsql)
 const prisma = new PrismaClient({ adapter })
