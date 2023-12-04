@@ -1,5 +1,5 @@
 import { auth } from './auth'
-import { post } from './posts'
+import { post } from './post'
 import { dashboard } from './dashboard'
 
 export { auth, post, dashboard }
